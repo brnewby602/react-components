@@ -8,9 +8,21 @@ to div tag in index.html with an id of app
 var GroceryListItem = (props) => (<li>{props.item}</li>);
 
 
-var GroceryList = () => (<ul><GroceryListItem item={'Pace Picante Sauce'}/><GroceryListItem item={'Tortilla Chips'}/></ul>);
+var GroceryList = (props) => (
+  <ul>
+     {
+        
+        props.items.map( function(item) {
+           return <GroceryListItem item={item}/>
+        })
 
-ReactDOM.render(<GroceryList/> , document.getElementById('app'));
+
+     }
+     
+  </ul>
+);
+
+ReactDOM.render(<GroceryList items={['Pace Picante Sauce', 'Tortilla Chips']}/> , document.getElementById('app'));
 
 
 

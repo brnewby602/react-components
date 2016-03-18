@@ -5,17 +5,40 @@ to div tag in index.html with an id of app
 
 */
 
-var GroceryListItem = (props) => (<li>{props.item}</li>);
+class GroceryListItem extends React.Component {
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      bold: false
+    };
+  }
+
+  onGroceryListItemHover () {
+     this.setState(
+       {bold: !this.state.bold}
+     );
+  }
+
+  render () {
+
+    var style = {
+      fontWeight: this.state.bold ? '800' : '200'
+    };
+
+    return <li style={style} onMouseOver={this.onGroceryListItemHover.bind(this)} onMouseOut={this.onGroceryListItemHover.bind(this)}>{this.props.item}</li>
+  }
+
+} 
 
 
 var GroceryList = (props) => (
   <ul>
      {
-        
-        props.items.map( function(item) {
-           return <GroceryListItem item={item}/>
-        })
-
+      
+        props.items.map( (item) => (
+          <GroceryListItem item={item}/>
+        ))
 
      }
      
